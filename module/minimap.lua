@@ -1,5 +1,5 @@
 local Hook = function()
-	Minimap:HookScript("OnMouseUp", function(self, button, ...)
+	Minimap:SetScript("OnMouseUp", function(self, button, ...)
 		if button == "RightButton" then
 			ToggleDropDownMenu(1, nil, MiniMapTrackingDropDown, self, 0, -5)
 
