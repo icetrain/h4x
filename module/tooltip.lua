@@ -46,6 +46,12 @@ end
 
 local Hook = function()
 	local _UnitFrame_UpdateTooltip = UnitFrame_UpdateTooltip
+	local _GameTooltip_SetDefaultAnchor = GameTooltip_SetDefaultAnchor
+
+	GameTooltip_SetDefaultAnchor = function(tooltip, parent)
+		_GameTooltip_SetDefaultAnchor(tooltip, parent)
+		tooltip:SetOwner(parent, "ANCHOR_CURSOR")
+	end
 
 	UnitFrame_UpdateTooltip = function(this)
 		_UnitFrame_UpdateTooltip(this)
@@ -58,7 +64,6 @@ local Hook = function()
 
 	GameTooltip:HookScript("OnShow", function(self, ...)
 		UpdateFont(...)
-		self:SetAnchorType("ANCHOR_CURSOR")
 	end)
 	
 end
@@ -95,3 +100,4 @@ f:SetScript("OnEvent", function(self, event, ...)
 end)
 
 f:RegisterEvent("PLAYER_ENTERING_WORLD")
+
