@@ -1,0 +1,20 @@
+## Interface: 70000
+## Author: icetrain
+## Title: h4x
+## Notes: I'm in ur akount sharding ur purplz!
+## SavedVariablesPerCharacter: h4xDB
+h4x.lua
+module\align.lua
+module\buff.lua
+module\chat.lua
+module\combattext.lua
+module\compare.lua
+module\minimap.lua
+module\panel.lua
+module\powerbar.lua
+module\raidwarning.lua
+module\slashcmd.lua
+module\tooltip.lua
+module\ticket.lua
+module\vendor.lua
+module\worldmap.lua
