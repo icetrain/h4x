@@ -76,30 +76,14 @@ end
 
 local f = CreateFrame("Frame")
 f:SetScript("OnEvent", function(self, event, ...)
-	if event == "PLAYER_ALIVE" then
-		if IsAddOnLoaded("Blizzard_CombatText") then
-			Hook()
-			ModifyCombatText()
-			Update()
-		end
-
-		f:UnregisterEvent("PLAYER_ALIVE")
-
-	elseif event == "ADDON_LOADED" then
-		local addon = ...
-		
-		if addon == "Blizzard_CombatText" then
-			Hook()
-			ModifyCombatText()
-			Update()
-
-			f:RegisterEvent("ADDON_LOADED")
-		end
+	if event == "PLAYER_ENTERING_WORLD" then
+		Hook()
+		ModifyCombatText()
+		Update()
 	end
 end)
 
-f:RegisterEvent("ADDON_LOADED")
-f:RegisterEvent("PLAYER_ALIVE")
+f:RegisterEvent("PLAYER_ENTERING_WORLD")
 
 
 

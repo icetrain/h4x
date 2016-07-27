@@ -1,5 +1,5 @@
 class = select(2, UnitClass("player"))
-if class ~= "HUNTER" and class ~= "DRUID" then
+if class ~= "HUNTER" and class ~= "DRUID" and class ~= "WARRIOR" then
 	return
 end
 
