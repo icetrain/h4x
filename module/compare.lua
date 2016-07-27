@@ -13,8 +13,6 @@ end
 
 local f = CreateFrame("Frame")
 f:SetScript("OnEvent", function(self, event, ...)
-	SetCVar("alwaysCompareItems", 1)
-	
 	Hook()
 	TameItemRefTooltip()
 end)
