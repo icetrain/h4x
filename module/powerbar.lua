@@ -106,7 +106,7 @@ local CreateBar = function(self, event, ...)
 	f.backdrop = f:CreateTexture(nil, "BACKGROUND", f)
 	f.backdrop:SetPoint("TOPLEFT", -1, 1)
 	f.backdrop:SetPoint("BOTTOMRIGHT", 1, -1)
-	f.backdrop:SetTexture(0, 0, 0, .8)
+	f.backdrop:SetColorTexture(0, 0, 0, .5)
 
 	f.bar = CreateFrame("StatusBar", nil, f)
 	f.bar:SetPoint("CENTER", f)
