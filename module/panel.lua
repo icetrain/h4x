@@ -32,7 +32,7 @@ local Update = function(self, elapsed)
 	local gccur = collectgarbage('count')
 	
 	self.font:SetText(
-		string.format("%2dfps  %3d/%-3dms  %.1fmb (%.1fmb, %dkb/s)  %s",
+		string.format(" %dfps  %d/%dms  %.1fmb (%.1fmb, %dkb/s)  %s",
 			GetFramerate(),
 			select(3, GetNetStats()),
 			select(4, GetNetStats()),
