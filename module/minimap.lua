@@ -88,6 +88,8 @@ f:SetScript("OnEvent", function(self, event, ...)
 
 		self.lastping = {}
 
+		self:UnregisterEvent("PLAYER_ENTERING_WORLD")
+
 	elseif event == "MINIMAP_PING"  then
 		local arg1, now = ..., time()
 		self.lastping[arg1] = self.lastping[arg1] or now - 2

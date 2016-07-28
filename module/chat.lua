@@ -76,6 +76,7 @@ local f = CreateFrame("Frame")
 f:SetScript("OnEvent", function(self, event, ...)
 	if event == "PLAYER_ENTERING_WORLD" then
 		ModifyChat()
+		self:UnregisterEvent("PLAYER_ENTERING_WORLD")
 
 	elseif event == "PLAYER_REGEN_DISABLED" then
 		SetCVar("chatBubbles", 1)

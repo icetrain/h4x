@@ -149,6 +149,8 @@ local CreateBar = function(self, event, ...)
 	Update(f.bar, "UNIT_POWER_FREQUENT", "player")
 	Update(f.bar, "UNIT_MAXPOWER", "player")
 	Update(f.bar, "UNIT_DISPLAYPOWER", "player")
+
+	self:UnregisterEvent("PLAYER_ENTERING_WORLD")
 end
 
 

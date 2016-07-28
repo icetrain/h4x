@@ -78,6 +78,7 @@ f:SetScript("OnEvent", function(self, event, ...)
 		UpdateAuras()
 		
 		self:RegisterEvent("UNIT_AURA")
+		self:UnregisterEvent("PLAYER_ENTERING_WORLD")
 		
 	else
 		local unit = ...

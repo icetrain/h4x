@@ -15,6 +15,8 @@ local f = CreateFrame("Frame")
 f:SetScript("OnEvent", function(self, event, ...)
 	Hook()
 	TameItemRefTooltip()
+
+	self:UnregisterEvent("PLAYER_ENTERING_WORLD")
 end)
 
 f:RegisterEvent("PLAYER_ENTERING_WORLD")

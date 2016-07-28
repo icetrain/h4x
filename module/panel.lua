@@ -59,6 +59,8 @@ local CreatePanel = function(self, event, ...)
 
 	f:SetScript("OnUpdate", Update)
 	f:Show()
+
+	self:UnregisterEvent("PLAYER_ENTERING_WORLD")
 end
 
 	
