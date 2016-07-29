@@ -76,11 +76,11 @@ end
 
 local f = CreateFrame("Frame")
 f:SetScript("OnEvent", function(self, event, ...)
-	if event == "PLAYER_ENTERING_WORLD" then
-		Hook()
-		ModifyCombatText()
-		Update()
-	end
+	Hook()
+	ModifyCombatText()
+	Update()
+
+	self:UnregisterEvent("PLAYER_ENTERING_WORLD")
 end)
 
 f:RegisterEvent("PLAYER_ENTERING_WORLD")
