@@ -40,12 +40,10 @@ local ModifyCombatText = function()
 		_G["CombatText" .. i]:SetFont(h4x.font, 25, "OUTLINE")
 	end
 
-
 	-- Globalstrings
 	ENTERING_COMBAT = "+Combat"
 	LEAVING_COMBAT = "-Combat"
 	AURA_END = "-(%s)"
-
 
 	-- Strings local to Blizzard_CombatText
 	COMBAT_TEXT_STAGGER_RANGE = 400
@@ -69,8 +67,6 @@ local ModifyCombatText = function()
 	
 	COMBAT_TEXT_TYPE_INFO["HEALTH_LOW"] = 				{r = 1, g = 127/255, b = 127/255, show = 1}
 	COMBAT_TEXT_TYPE_INFO["MANA_LOW"] = 				{r = 127/255, g = 127/255, b = 1, show = 1}
-
-	CombatText_UpdateDisplayedMessages()
 end
 
 
