@@ -1,3 +1,7 @@
+local AUCTION_OUTBID = AUCTION_OUTBID or ERR_AUCTION_OUTBID_S:gsub('%%s', '%.+')
+local AUCTION_WON = AUCTION_WON or ERR_AUCTION_WON_S:gsub('%%s', '%.+')
+
+
 local Hook = function()
 	Minimap:SetScript("OnMouseUp", function(self, button, ...)
 		if button == "RightButton" then
@@ -85,8 +89,14 @@ f:SetScript("OnEvent", function(self, event, ...)
 		self:RegisterEvent("CALENDAR_UPDATE_PENDING_INVITES")
 		self:RegisterEvent("UPDATE_PENDING_MAIL")
 		self:RegisterEvent("MINIMAP_PING")
+		self:RegisterEvent("MAIL_SHOW")
+		self:RegisterEvent("MAIL_CLOSED")
+		self:RegisterEvent("CHAT_MSG_SYSTEM")
 
 		self.lastping = {}
+		self.mail_fake = false
+		self.mail_open = false
+		self.mail_closed = 0
 
 		self:UnregisterEvent("PLAYER_ENTERING_WORLD")
 
@@ -99,14 +109,42 @@ f:SetScript("OnEvent", function(self, event, ...)
 			self.lastping[arg1] = now
 		end
 
+	elseif event == "MAIL_SHOW" then
+		self.mail_open = true
+
+	elseif event == "MAIL_CLOSED" then
+		self.mail_closed = time()
+		self.mail_open = false
+
+	elseif event == "CHAT_MSG_SYSTEM" then
+		local message = ...
+
+		if message == ERR_AUCTION_REMOVED or strmatch(message, AUCTION_WON) then
+			self.fake_mail = true
+		end
+
  	-- UPDATE_PENDING_MAIL, CALENDAR_UPDATE_PENDING_INVITES
 	else
 		local f = Minimap
 		local mail = HasNewMail()
 		local invite = CalendarGetNumPendingInvites()
+		local mailsound = true
+
+		-- Some auction events produce UPDATE_PENDING_MAIL events.
+		if self.mail_fake then
+			mail = false
+
+		-- UPDATE_PENDING_MAIL triggers
+		--  - When the mailbox is closed (MAIL_CLOSED) and the number of items have changed
+		--	- When the user is managing the inbox
+		elseif self.mail_closed + 1 > time() or self.mail_open then
+			mailsound = false
+		end
 
 		if invite > 0 and mail then
-			PlaySoundFile(h4x.mailsound)
+			if mailsound then
+				PlaySoundFile(h4x.mailsound)
+			end
 			f.mail:SetText("Mail & Invite")
 			f.mail:Show()
 
@@ -115,7 +153,9 @@ f:SetScript("OnEvent", function(self, event, ...)
 			f.mail:Show()
 
 		elseif invite == 0 and mail then
-			PlaySoundFile(h4x.mailsound)
+			if mailsound then
+				PlaySoundFile(h4x.mailsound)
+			end
 			f.mail:SetText("Mail")
 			f.mail:Show()
 
