@@ -1,4 +1,3 @@
-local AUCTION_OUTBID = AUCTION_OUTBID or ERR_AUCTION_OUTBID_S:gsub('%%s', '%.+')
 local AUCTION_WON = AUCTION_WON or ERR_AUCTION_WON_S:gsub('%%s', '%.+')
 
 
@@ -94,7 +93,7 @@ f:SetScript("OnEvent", function(self, event, ...)
 		self:RegisterEvent("CHAT_MSG_SYSTEM")
 
 		self.lastping = {}
-		self.mail_fake = false
+		self.mail_auction_spam = false
 		self.mail_open = false
 		self.mail_closed = 0
 
@@ -120,7 +119,7 @@ f:SetScript("OnEvent", function(self, event, ...)
 		local message = ...
 
 		if message == ERR_AUCTION_REMOVED or strmatch(message, AUCTION_WON) then
-			self.fake_mail = true
+			self.mail_auction_spam = true
 		end
 
  	-- UPDATE_PENDING_MAIL, CALENDAR_UPDATE_PENDING_INVITES
@@ -130,14 +129,11 @@ f:SetScript("OnEvent", function(self, event, ...)
 		local invite = CalendarGetNumPendingInvites()
 		local mailsound = true
 
-		-- Some auction events produce UPDATE_PENDING_MAIL events.
-		if self.mail_fake then
-			mail = false
-
 		-- UPDATE_PENDING_MAIL triggers
 		--  - When the mailbox is closed (MAIL_CLOSED) and the number of items have changed
 		--	- When the user is managing the inbox
-		elseif self.mail_closed + 1 > time() or self.mail_open then
+		--  - When winning/removing an auction
+		if self.mail_closed + 1 > time() or self.mail_open or self.mail_auction_spam then
 			mailsound = false
 		end
 
