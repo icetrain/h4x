@@ -59,9 +59,6 @@ local ModifyCombatText = function()
 	COMBAT_TEXT_TYPE_INFO["ENTERING_COMBAT"] = 			{r = 1, g = 1, b = 1, show = 1}
 	COMBAT_TEXT_TYPE_INFO["LEAVING_COMBAT"] = 			{r = 1, g = 1, b = 1, show = 1}
 
-	COMBAT_TEXT_TYPE_INFO["SPELL_AURA_START"] = 		{r = 178/255, g = 178/255, b = 0, show = 1}
-	COMBAT_TEXT_TYPE_INFO["SPELL_AURA_END"] = 			{r = 229/255, g = 229/255, b = 0, show = 1}
-
 	COMBAT_TEXT_TYPE_INFO["SPELL_AURA_START_HARMFUL"] = {r = 0, g = 127/255, b = 127/255, show = 1}
 	COMBAT_TEXT_TYPE_INFO["SPELL_AURA_END_HARMFUL"] = 	{r = 0, g = 216/255, b = 216/255, show = 1}
 	
