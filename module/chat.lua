@@ -1,6 +1,6 @@
 local ModifyChat = function()
-	FriendsMicroButton.Show = function() end
-	FriendsMicroButton:Hide()
+	QuickJoinToastButton.Show = function() end
+	QuickJoinToastButton:Hide()
 
 	ChatFrameMenuButton.Show = function() end
 	ChatFrameMenuButton:Hide()
