@@ -28,8 +28,10 @@ f:SetScript("OnUpdate", function(self)
 	local cx = (x / scale - left) / width
 	local cy = (top - y / scale) / height
 
-
-	self.player:SetText(string.format("Player: %2d.%2d", px * 100, py * 100))
+    -- Player position not avalable in raid
+	if (px and py) then
+		self.player:SetText(string.format("Player: %2d.%2d", px * 100, py * 100))
+	end
 
 	if cx < 0 or cx > 1 or cy < 0 or cy > 1 then
 		self.cursor:Hide()
