@@ -1,4 +1,4 @@
-## Interface: 70000
+## Interface: 70100
 ## Author: icetrain
 ## Title: h4x
 ## Notes: I'm in ur akount sharding ur purplz!
@@ -10,6 +10,7 @@ module\chat.lua
 module\combattext.lua
 module\compare.lua
 module\minimap.lua
+module\orderhall.lua
 module\panel.lua
 module\powerbar.lua
 module\raidwarning.lua
